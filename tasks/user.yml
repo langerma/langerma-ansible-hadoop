@@ -18,4 +18,6 @@
   copy:
     src: "{{ hadoop_ssh_key }}"
     dest: "{{ hadoop_install_dir }}/.ssh/id_rsa"
+    user: "{{ hadoop_user }}"
+    group: "{{ hadoop_group }}"
     mode: 0600
