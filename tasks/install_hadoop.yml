@@ -1,7 +1,13 @@
 ---
+- name: copy {{ hadoop_install_tar }} to {{ hadoop_install_dir }}
+  copy:
+    src: "{{ hadoop_install_tar }}"
+    desr: "{{ hadoop_install_dir }}"
+
 - name: Extract {{ hadoop_install_tar }} into {{ hadoop_install_dir }}
   unarchive:
-    src: "{{ hadoop_install_tar }}"
+    remote_src: yes
+    src: "{{ hadoop_install_dir }}/{{ hadoop_install_tar }}"
     dest: "{{ hadoop_install_dir }}"
     owner: "{{ hadoop_user }}"
     group: "{{ hadoop_group }}"
