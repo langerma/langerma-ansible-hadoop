@@ -1,7 +1,7 @@
 ---
 - name: Add Hadoop User {{ hadoop_user }}
   user:
-    name: {{ hadoop_user }}
+    name: "{{ hadoop_user }}"
     shell: "/bin/bash"
     home: "{{ hadoop_install_dir }}"
     append: true
@@ -10,6 +10,6 @@
   authorized_key:
     user: "{{ hadoop_user }}"
     state: present
-    key: '{{ item }}'
+    key: "{{ item }}"
   with_file:
-    - {{ hadoop_ssh_key }}
+    - "{{ hadoop_ssh_key }}"
