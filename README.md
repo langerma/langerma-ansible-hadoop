@@ -20,6 +20,7 @@ an ansible role to install and configure hadoop on linux
     hadoop_dfs_data: "{{ hadoop_install_dir }}/dfs/data"
     hadoop_log_path: "{{ hadoop_install_dir }}/log"
     hadoop_ssh_key: ""
+    hadoop_ssh_key_pub: ""
     add_user: true
     open_firewall: false
     disable_firewall: false

@@ -12,4 +12,12 @@
     state: present
     key: "{{ item }}"
   with_file:
+    - "{{ hadoop_ssh_key_pub }}"
+
+- name: copy private key {{ hadoop_ssh_key }} to {{ hadoop_install_dir }}/.ssh/{{ item }}
+  copy:
+    src: keys/myapp.private
+    dest: "{{ hadoop_install_dir }}/.ssh/{{ item }}"
+    mode: 0600
+  with_items:
     - "{{ hadoop_ssh_key }}"
