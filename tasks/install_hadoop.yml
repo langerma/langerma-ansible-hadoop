@@ -1,10 +1,8 @@
 ---
-- name: Copy Hadoop
-  copy:
-    src: {{ download_path }}/hadoop-{{hadoop_version}}.tar.gz
-    dest: /tmp
-    owner: {{ user }}
-    mode: 755
-
-- name: Unzip Hadoop
-  shell: "tar zxf /tmp/hadoop-{{hadoop_version}}.tar.gz -C {{ hadoop_path }}"
+- name: Extract {{ hadoop_install_tar }} into {{ hadoop_install_dir }}
+  unarchive:
+    src: "{{ hadoop_install_tar }}"
+    dest: "{{ hadoop_install_dir }}"
+    owner: "{{ hadoop_user }}"
+    group: "{{ hadoop_group }}"
+    extra_opts: [--strip-components=1]
