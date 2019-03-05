@@ -2,7 +2,7 @@
 - name: copy {{ hadoop_install_tar }} to {{ hadoop_install_dir }}
   copy:
     src: "{{ hadoop_install_tar }}"
-    dest: "{{ hadoop_install_dir }}"
+    dest: "{{ hadoop_install_dir }}/files"
 
 - name: Extract {{ hadoop_install_tar }} into {{ hadoop_install_dir }}
   unarchive:
