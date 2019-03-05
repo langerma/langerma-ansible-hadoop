@@ -1,7 +1,7 @@
 ---
 - include: user.yml
   when: add_user
-  
+
 - name: Create Hadoop Path
   file:
     path: "{{ item }}"
@@ -11,7 +11,6 @@
     mode: 0755
   with_items:
     - "{{ hadoop_create_path }}"
-
 
 - include: install_hadoop.yml
   when: install_hadoop

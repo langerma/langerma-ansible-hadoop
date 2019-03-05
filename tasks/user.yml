@@ -3,6 +3,13 @@
   user:
     name: {{ hadoop_user }}
     shell: "/bin/bash"
-    home: "{{ hadoop_in"stall_dir }}"
+    home: "{{ hadoop_install_dir }}"
     append: true
-  when: add_user
+
+- name: Set authorized key took from file for langerma
+  authorized_key:
+    user: "{{ hadoop_user }}"
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - {{ hadoop_ssh_key }}
