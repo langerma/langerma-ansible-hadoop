@@ -10,13 +10,21 @@ an ansible role to install and configure hadoop on linux
     java_version: 11
     java_install_dir: "/app/java"
     supervisord_ini_dir: "/app/supervisord.d"
+    hadoop_user: "hadoop"
+    hadoop_group: "hadoop"
     hadoop_install_tar: "files/hadoop-2.9.2.tar.gz"
     hadoop_install_dir: "/app/zookeeper"
     hadoop_config_path: "{{ hadoop_install_dir }}/etc/hadoop"
     hadoop_tmp: "{{ hadoop_install_dir }}/tmp"
     hadoop_dfs_name: "{{ hadoop_install_dir }}/dfs/name"
     hadoop_dfs_data: "{{ hadoop_install_dir }}/dfs/data"
-    hadoop_log_path: "{{ hadoop_install_dir }}/logs"
+    hadoop_log_path: "{{ hadoop_install_dir }}/log"
+    hadoop_ssh_key: ""
+    add_user: true
+    open_firewall: false
+    disable_firewall: false
+    install_hadoop: true
+    config_hadoop: true
 
     hadoop_create_path:
       - "{{ hadoop_install_dir }}"
