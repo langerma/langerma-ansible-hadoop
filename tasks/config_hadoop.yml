@@ -10,7 +10,7 @@
 - name: Copy Hadoop hdfs-site.xml to {{ hadoop_config_path }}
   template:
     src: hdfs-site.xml
-    dest: {{ hadoop_config_path }}
+    dest: "{{ hadoop_config_path }}"
     mode: 644
     owner: "{{ hadoop_user }}"
     group: "{{ hadoop_group }}"
@@ -18,31 +18,31 @@
 - name: Copy Hadoop mapred-site.xml to {{ hadoop_config_path }}
   template:
     src: mapred-site.xml
-    dest: {{ hadoop_config_path }}
+    dest: "{{ hadoop_config_path }}"
     mode: 644
-    owner: {{ hadoop_user }}
-    group: {{ hadoop_group }}
+    owner: "{{ hadoop_user }}"
+    group: "{{ hadoop_group }}"
 
 - name: Copy Hadoop yarn-site.xml to {{ hadoop_config_path }}
   template:
     src: yarn-site.xml
-    dest: {{ hadoop_config_path }}
+    dest: "{{ hadoop_config_path }}"
     mode: 644
-    owner: {{ hadoop_user }}
-    group: {{ hadoop_group }}
+    owner: "{{ hadoop_user }}"
+    group: "{{ hadoop_group }}"
 
 - name: Copy Hadoop workers to {{ hadoop_config_path }}
   template:
     src: workers
-    dest: {{ hadoop_config_path }}
+    dest: "{{ hadoop_config_path }}"
     mode: 644
-    owner: {{ hadoop_user }}
-    group: {{ hadoop_group }}
+    owner: "{{ hadoop_user }}"
+    group: "{{ hadoop_group }}"
 
 - name: Copy Hadoop Env Script to {{ hadoop_config_path }}
   template:
     src: hadoop_env.sh
-    dest: {{ hadoop_config_path }}
+    dest: "{{ hadoop_config_path }}"
     mode: 755
-    owner: {{ hadoop_user }}
-    group: {{ hadoop_group }}
+    owner: "{{ hadoop_user }}"
+    group: "{{ hadoop_group }}"
