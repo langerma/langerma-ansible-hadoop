@@ -1,9 +1,9 @@
 ---
 - name: Create Hadoop Path
-  file: 
+  file:
     path: "{{ item }}"
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    owner: "{{ hadoop_user }}"
+    group: "{{ hadoop_group }}"
     state: directory
     mode: 0755
   with_items:
