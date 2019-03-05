@@ -1,4 +1,7 @@
 ---
+- include: user.yml
+  when: add_user
+  
 - name: Create Hadoop Path
   file:
     path: "{{ item }}"
