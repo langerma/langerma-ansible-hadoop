@@ -38,53 +38,53 @@ an ansible role to install and configure hadoop on linux
     hdfs_port: 9000
     core_site_properties:
       - {
-          "name":"fs.defaultFS",
-          "value":"hdfs://{{ master_ip }}:{{ hdfs_port }}"
+          "name": "fs.defaultFS",
+          "value": "hdfs://{{ master_ip }}:{{ hdfs_port }}"
       }
       - {
-          "name":"hadoop.tmp.dir",
-          "value":"file:{{ hadoop_tmp }}"
+          "name": "hadoop.tmp.dir",
+          "value": "file:{{ hadoop_tmp }}"
       }
       - {
-        "name":"io.file.buffer.size",
-        "value":"131072"
+          "name": "io.file.buffer.size",
+          "value": "131072"
       }
 
     dfs_namenode_httpport: 9001
     hdfs_site_properties:
       - {
-          "name":"dfs.namenode.secondary.http-address",
-          "value":"{{ master_hostname }}:{{ dfs_namenode_httpport }}"
+          "name": "dfs.namenode.secondary.http-address",
+          "value": "{{ master_hostname }}:{{ dfs_namenode_httpport }}"
       }
       - {
-          "name":"dfs.namenode.name.dir",
-          "value":"file:{{ hadoop_dfs_name }}"
+          "name": "dfs.namenode.name.dir",
+          "value": "file:{{ hadoop_dfs_name }}"
       }
       - {
-          "name":"dfs.namenode.data.dir",
-          "value":"file:{{ hadoop_dfs_data }}"
+          "name": "dfs.namenode.data.dir",
+          "value": "file:{{ hadoop_dfs_data }}"
       }
       - {
-          "name":"dfs.replication",
-          "value":"{{ groups['workers']|length }}"
+          "name": "dfs.replication",
+          "value": "{{ groups['workers']|length }}"
       }
       - {
-        "name":"dfs.webhdfs.enabled",
-        "value":"true"
+          "name": "dfs.webhdfs.enabled",
+          "value": "true"
       }
 
     mapred_site_properties:
       - {
-       "name": "mapreduce.framework.name",
-       "value": "yarn"
+          "name": "mapreduce.framework.name",
+          "value": "yarn"
       }
       - {
-       "name": "mapreduce.admin.user.env",
-       "value": "HADOOP_MAPRED_HOME=$HADOOP_COMMON_HOME"
+          "name": "mapreduce.admin.user.env",
+          "value": "HADOOP_MAPRED_HOME=$HADOOP_COMMON_HOME"
       }
       - {
-        "name":"yarn.app.mapreduce.am.env",
-        "value":"HADOOP_MAPRED_HOME=$HADOOP_COMMON_HOME"
+          "name": "yarn.app.mapreduce.am.env",
+          "value": "HADOOP_MAPRED_HOME=$HADOOP_COMMON_HOME"
       }
 
     yarn_resourcemanager_port: 8040
@@ -95,32 +95,32 @@ an ansible role to install and configure hadoop on linux
 
     yarn_site_properties:
       - {
-        "name":"yarn.resourcemanager.address",
-        "value":"{{ master_hostname }}:{{ yarn_resourcemanager_port }}"
+          "name": "yarn.resourcemanager.address",
+          "value": "{{ master_hostname }}:{{ yarn_resourcemanager_port }}"
       }
       - {
-        "name":"yarn.resourcemanager.scheduler.address",
-        "value":"{{ master_hostname }}:{{ yarn_resourcemanager_scheduler_port }}"
+          "name": "yarn.resourcemanager.scheduler.address",
+          "value": "{{ master_hostname }}:{{ yarn_resourcemanager_scheduler_port }}"
       }
       - {
-        "name":"yarn.resourcemanager.webapp.address",
-        "value":"{{ master_hostname }}:{{ yarn_resourcemanager_webapp_port }}"
+          "name": "yarn.resourcemanager.webapp.address",
+          "value": "{{ master_hostname }}:{{ yarn_resourcemanager_webapp_port }}"
       }
       - {
-        "name": "yarn.resourcemanager.resource-tracker.address",
-        "value": "{{ master_hostname }}:{{ yarn_resourcemanager_tracker_port }}"
+          "name": "yarn.resourcemanager.resource-tracker.address",
+          "value": "{{ master_hostname }}:{{ yarn_resourcemanager_tracker_port }}"
       }
       - {
-        "name": "yarn.resourcemanager.admin.address",
-        "value": "{{ master_hostname }}:{{ yarn_resourcemanager_admin_port }}"
+          "name": "yarn.resourcemanager.admin.address",
+          "value": "{{ master_hostname }}:{{ yarn_resourcemanager_admin_port }}"
       }
       - {
-        "name": "yarn.nodemanager.aux-services",
-        "value": "mapreduce_shuffle"
+          "name": "yarn.nodemanager.aux-services",
+          "value": "mapreduce_shuffle"
       }
       - {
-        "name": "yarn.nodemanager.aux-services.mapreduce.shuffle.class",
-        "value": "org.apache.hadoop.mapred.ShuffleHandler"
+          "name": "yarn.nodemanager.aux-services.mapreduce.shuffle.class",
+          "value": "org.apache.hadoop.mapred.ShuffleHandler"
       }
 
     dashbord_port: 9870
