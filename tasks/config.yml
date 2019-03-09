@@ -1,48 +1,91 @@
 ---
-- name: Copy Hadoop core-site.xml to {{ hadoop_config_path }}
+- name: Configure mapred-site.xml
   template:
-    src: core-site.xml
-    dest: "{{ hadoop_config_path }}"
-    owner: "{{ hadoop_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "u=rw,g=r,o=r"
+    src: "mapred-site.xml.j2"
+    dest: "{{ hdfs_conf_dir }}/mapred-site.xml"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
 
-- name: Copy Hadoop hdfs-site.xml to {{ hadoop_config_path }}
+- name: Configure slaves
   template:
-    src: hdfs-site.xml
-    dest: "{{ hadoop_config_path }}"
-    owner: "{{ hadoop_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "u=rw,g=r,o=r"
+    src: "slaves.j2"
+    dest: "{{ hdfs_conf_dir }}/slaves"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: 0744
 
-- name: Copy Hadoop mapred-site.xml to {{ hadoop_config_path }}
-  template:
-    src: mapred-site.xml
-    dest: "{{ hadoop_config_path }}"
-    owner: "{{ hadoop_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "u=rw,g=r,o=r"
+- name: Create namenode directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: 0700
+  with_items: "{{ hdfs_namenode_dir_list }}"
+  when: '"master" in group_names'
 
-- name: Copy Hadoop yarn-site.xml to {{ hadoop_config_path }}
+- name: Create exclude file
   template:
-    src: yarn-site.xml
-    dest: "{{ hadoop_config_path }}"
-    owner: "{{ hadoop_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "u=rw,g=r,o=r"
+    src: "dfs.hosts.exclude.j2"
+    dest: "{{ hdfs_conf_dir }}/dfs.hosts.exclude"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: 0700
+  #notify: Restart namenode
 
-- name: Copy Hadoop workers to {{ hadoop_config_path }}
+- name: Create rack awareness script
   template:
-    src: workers
-    dest: "{{ hadoop_config_path }}"
-    owner: "{{ hadoop_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "u=rw,g=r,o=r"
+    src: rack-awareness.sh.j2
+    dest: "{{ hdfs_rack_script_path }}"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: 0755
+  when: hdfs_rack_script_awk is defined
 
-- name: Copy Hadoop Env Script to {{ hadoop_config_path }}
+- name: Configure core-site.xml
   template:
-    src: hadoop-env.sh
-    dest: "{{ hadoop_config_path }}"
-    owner: "{{ hadoop_user }}"
-    group: "{{ hadoop_group }}"
-    mode: "u=rwx,g=rx,o=x"
+    src: core-site.xml.j2
+    dest: "{{ hdfs_conf_dir }}/core-site.xml"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: 0755
+  notify:
+    - Restart namenode
+    - Restart secondary namenode
+    - Restart datanode
+    - Restart journalnode
+    - Restart zkfc
+  tags:
+   - hdfs-core-config
+
+- name: Configure hdfs-site.xml
+  template:
+    src: hdfs-site.xml.j2
+    dest: "{{ hdfs_conf_dir }}/hdfs-site.xml"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: 0755
+  notify:
+    - Restart namenode
+    - Restart secondary namenode
+    - Restart datanode
+    - Restart journalnode
+    - Restart zkfc
+  tags:
+   - hdfs-site-config
+
+- name: Configure log4j.properties
+  template:
+    src: log4j.properties.j2
+    dest: "{{ hdfs_conf_dir }}/log4j.properties"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: 0755
+  notify:
+    - Restart namenode
+    - Restart secondary namenode
+    - Restart datanode
+    - Restart journalnode
+    - Restart zkfc
+  tags:
+   - hdfs-log4j-config
