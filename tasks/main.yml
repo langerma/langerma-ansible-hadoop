@@ -13,10 +13,10 @@
     - "{{ hadoop_create_path }}"
 
 - include: install_hadoop.yml
-  when: install_hadoop
+  when: install
 
 - include: config_hadoop.yml
-  when: config_hadoop
+  when: config
 
 - include: redhat.yml
   when: ansible_os_family == 'RedHat'
