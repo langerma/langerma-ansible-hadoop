@@ -1,0 +1,13 @@
+---
+- name: Create datanode directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: "{{ hdfs_dfs_datanode_data_dir_perm }}"
+    mode: 0700
+  with_items: "{{ hdfs_datanode_dir_list }}"
+
+- name: Set program variable to 'datanode'
+  set_fact: program="datanode"
