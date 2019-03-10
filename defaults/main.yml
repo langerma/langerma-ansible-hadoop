@@ -3,14 +3,16 @@
 # General cluster settings
 # ------------------------------------------------------------------------------
 hdfs_cluster_name: tsdb
-hdfs_user: hdfs
-hdfs_group: hadoop
-hdfs_user_home: "/var/lib/hadoop-hdfs"
-hdfs_conf_dir: "/etc/hadoop/conf"
+hdfs_user: "hadoop"
+hdfs_group: "hadoop"
+hadoop_install_tar: "hadoop-2.9.2.tar.gz"
+hadoop_install_dir: "/app/hadoop"
+hdfs_user_home: "{{ hadoop_install_dir }}"
+hdfs_conf_dir: "{{ hadoop_install_dir }}/etc/hadoop"
 
 # Directories where journal nodes should store edits
-hdfs_dfs_journalnode_edits_dir: "/tmp/dfs/journaldir"
-hdfs_dfs_journalnode_edits_dir_perm: "700"
+hdfs_dfs_journalnode_edits_dir: "{{ hadoop_install_dir }}/dfs/journaldir"
+hdfs_dfs_journalnode_edits_dir_perm: 700
 
 # Bootstraps the cluster ( Format namenodes, zkfc, journalnodes, start all services)
 # Please read the code before you activate this option.
@@ -33,7 +35,7 @@ hdfs_datanodes: "{{ groups.data }}"
 hdfs_zookeeper_hosts: "{{ groups.master }}"
 
 hdfs_log_dir: /var/log/hadoop
-hdfs_tmpdir: "/tmp"
+hdfs_tmpdir: "{{ hadoop_install_dir }}/tmp"
 
 # ------------------------------------------------------------------------------
 # Hadoop configuration
@@ -44,13 +46,13 @@ hdfs_bin_dir: "/bin"
 
 # Directories where namenode should store metadata
 hdfs_namenode_dir_list:
- - "/data/dfs/name"
+ - "{{ hadoop_install_dir }}/data/dfs/name"
 # Directories where secondary namenode should store temporary images to merge
 hdfs_namenode_checkpoint_dir_list:
- - "/data/dfs/secondaryname"
+ - "{{ hadoop_install_dir }}/data/dfs/secondaryname"
 # Directories where datanodes should store data
 hdfs_datanode_dir_list:
- - "/data/dfs/data"
+ - "{{ hadoop_install_dir }}/data/dfs/data"
 
 hdfs_enable_short_circuit_reads: true  # IMPORTANT: this property should be 'true' or 'false'
 
