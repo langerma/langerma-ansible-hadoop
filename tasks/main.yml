@@ -12,10 +12,10 @@
   with_items:
     - "{{ hadoop_create_path }}"
 
-- include: install_hadoop.yml
+- include: install.yml
   when: install
 
-- include: config_hadoop.yml
+- include: config.yml
   when: config
 
 - include: redhat.yml
