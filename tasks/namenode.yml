@@ -1,0 +1,9 @@
+---
+- name: Create journalnode edits dir
+  file:
+    path: "{{ hdfs_dfs_journalnode_edits_dir }}"
+    state: directory
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: "{{ hdfs_dfs_journalnode_edits_dir_perm }}"
+  when: '"master" in group_names'
