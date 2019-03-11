@@ -12,10 +12,10 @@
   when:
    - inventory_hostname in hdfs_namenodes
 
-#- name: Restart datanode
-#  service: name=hadoop-hdfs-datanode state=restarted
-#  when:
-#   - inventory_hostname in hdfs_datanodes
+- name: Restart datanode
+  supervisorctl: name=datanode state=restarted
+  when:
+   - inventory_hostname in hdfs_datanodes
 
 - name: Restart journalnode
   supervisorctl: name=journalnode state=restarted
@@ -23,11 +23,11 @@
    - hdfs_ha_enabled
    - inventory_hostname in hdfs_journalnodes
 
-#- name: Restart zkfc
-#  service: name=hadoop-hdfs-zkfc state=restarted
-#  when:
-#   - hdfs_ha_enabled
-#   - inventory_hostname in hdfs_namenodes
+- name: Restart zkfc
+  supervisorctl: name=zkfc state=restarted
+  when:
+   - hdfs_ha_enabled
+   - inventory_hostname in hdfs_namenodes
 
 #- name: Restart secondary namenode
 #  service: name=hadoop-hdfs-secondarynamenode state=restarted

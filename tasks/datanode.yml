@@ -10,3 +10,18 @@
 
 - name: Set program variable to 'datanode'
   set_fact: program="datanode"
+
+- name: Copy datanode service file
+  template:
+    src: datanode.ini.j2
+    dest: "{{ supervisord_ini_dir }}/datanode.ini"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: "u=rw,g=r,o=r"
+  when: '"master" in group_names'
+  notify:
+    - update supervisord
+    - Restart datanode
+
+- name: Update supervisord
+  shell: supervisorctl reread && supervisorctl update
