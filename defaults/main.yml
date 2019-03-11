@@ -36,7 +36,7 @@ hdfs_journalnodes: "{{ groups.master }}"
 hdfs_datanodes: "{{ groups.data }}"
 hdfs_zookeeper_hosts: "{{ groups.master }}"
 
-hdfs_log_dir: /var/log/hadoop
+hdfs_log_dir: "{{ hadoop_install_dir }}/log"
 hdfs_tmpdir: "{{ hadoop_install_dir }}/tmp"
 
 # ------------------------------------------------------------------------------
