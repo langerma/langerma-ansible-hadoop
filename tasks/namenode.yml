@@ -15,5 +15,5 @@
     owner: "{{ hdfs_user }}"
     group: "{{ hdfs_group }}"
     mode: "u=rw,g=r,o=r"
-  handlers: update supervisord
+  handler: update supervisord
   when: '"master" in group_names'
