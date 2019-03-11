@@ -91,7 +91,7 @@ hdfs_dfs_namenode_avoid_write_stale_datanode: true
 hdfs_dfs_namenode_audit_log_async: false
 hdfs_dfs_client_file_block_storage_locations_num_threads: 10
 hdfs_dfs_client_file_block_storage_locations_timeout_millis: 1000
-hdfs_dfs_domain_socket_path_folder: /var/lib/hadoop-hdfs
+hdfs_dfs_domain_socket_path_folder: "{{ hadoop_install_dir }}/data/dfs"
 
 # ------------------------------------------------------------------------------
 # log4j.properties vars
