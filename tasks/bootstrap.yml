@@ -7,7 +7,7 @@
   when: inventory_hostname in hdfs_zookeeper_hosts
 
 - name: Ensure that journal nodes are running
-  service: name=hadoop-hdfs-journalnode state=started
+  supervisorctl: name=journalnode state=started
   when: inventory_hostname in hdfs_journalnodes
 
 - name: Format namenode {{hdfs_namenodes[0]}}
