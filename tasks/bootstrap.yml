@@ -50,11 +50,11 @@
   when: inventory_hostname == hdfs_namenodes[0]
 
 - name: Start zkfc services
-  service: name=hadoop-hdfs-zkfc state=started
+  supervisorctl: name=zkfc state=started
   when: inventory_hostname in hdfs_namenodes
 
 - name: Start data nodes
-  service: name=hadoop-hdfs-datanode state=started
+  supervisorctl: name=datanode state=started
   when: inventory_hostname in hdfs_datanodes
 
 - name: Bootstrapping complete

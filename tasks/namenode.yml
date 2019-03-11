@@ -20,6 +20,28 @@
     - update supervisord
     - Restart journalnode
 
+- name: Copy zkfc service file {{hdfs_namenodes[0]}}
+  template:
+    src: zkfc.ini.j2
+    dest: "{{ supervisord_ini_dir }}/zkfc.ini"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: "u=rw,g=r,o=r"
+  when: inventory_hostname == hdfs_namenodes[0]
+  notify:
+    - update supervisord
+
+- name: Copy zkfc service file {{hdfs_namenodes[1]}}
+  template:
+    src: zkfc.ini.j2
+    dest: "{{ supervisord_ini_dir }}/zkfc.ini"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: "u=rw,g=r,o=r"
+  when: inventory_hostname == hdfs_namenodes[1]
+  notify:
+    - update supervisord
+
 - name: Copy namenode service file {{hdfs_namenodes[0]}}
   template:
     src: namenode.ini.j2
