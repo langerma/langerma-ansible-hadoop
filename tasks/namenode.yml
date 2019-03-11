@@ -7,3 +7,13 @@
     group: "{{ hdfs_group }}"
     mode: "{{ hdfs_dfs_journalnode_edits_dir_perm }}"
   when: '"master" in group_names'
+
+- name: Copy journal service file
+  template:
+    src: journalnode.ini.j2
+    dest: "{{ supervisord_ini_dir }}/journalnode.ini"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: "u=rw,g=r,o=r"
+  handlers: update supervisord
+  when: '"master" in group_names'
