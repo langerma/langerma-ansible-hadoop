@@ -12,11 +12,26 @@
   with_items:
     - "{{ hadoop_create_path }}"
 
-- include: install.yml
-  when: install
+- import_tasks: install.yml
+  tags: install
 
-- include: config.yml
-  when: config
+- import_tasks: ssh_fence.yml
+  when: hdfs_ssh_fence and inventory_hostname in hdfs_namenodes
+
+- import_tasks: namenode.yml
+  tags: namenode,config
+  when: '"master" in group_names'
+
+- import_tasks: datanode.yml
+  tags: data,config
+  when: '"data" in group_names'
+
+- import_tasks: config.yml
+  tags: base,config
+
+- import_tasks: bootstrap.yml
+  when: hdfs_bootstrap and hdfs_ha_enabled
+  tags: bootstrap
 
 - include: redhat.yml
   when: ansible_os_family == 'RedHat'
