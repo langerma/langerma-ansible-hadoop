@@ -5,8 +5,8 @@
 hdfs_cluster_name: tsdb
 hdfs_user: "hadoop"
 hdfs_group: "hadoop"
-hadoop_user: {{ hdfs_user }}
-hadoop_group: {{ hdfs_group }}
+hadoop_user: "{{ hdfs_user }}"
+hadoop_group: "{{ hdfs_group }}"
 hadoop_install_tar: "hadoop-2.9.2.tar.gz"
 hadoop_install_dir: "/app/hadoop"
 hdfs_user_home: "{{ hadoop_install_dir }}"
