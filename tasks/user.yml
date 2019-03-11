@@ -14,10 +14,10 @@
   with_file:
     - "{{ hadoop_ssh_key_pub }}"
 
-- name: copy private key {{ hadoop_ssh_key }} to {{ hadoop_install_dir }}/.ssh/{{ item }}
+- name: "copy private key {{ hadoop_ssh_key }} to {{ hadoop_install_dir }}/.ssh/{{ item }}"
   copy:
     src: "{{ hadoop_ssh_key }}"
     dest: "{{ hadoop_install_dir }}/.ssh/id_rsa"
-    user: "{{ hadoop_user }}"
+    owner: "{{ hadoop_user }}"
     group: "{{ hadoop_group }}"
     mode: 0600
