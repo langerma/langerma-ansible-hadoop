@@ -16,3 +16,6 @@
     group: "{{ hdfs_group }}"
     mode: "u=rw,g=r,o=r"
   when: '"master" in group_names'
+  notify:
+    - update supervisord
+    - Restart journalnode
