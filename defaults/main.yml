@@ -110,6 +110,13 @@ hdfs_nameservices: "{{ hdfs_cluster_name }}"
 hdfs_zookeeper_client_port: 2181
 hdfs_zookeeper_quorum: "{{ hdfs_zookeeper_hosts | join(':' + (hdfs_zookeeper_client_port | string) + ',')  }}:{{ hdfs_zookeeper_client_port | string }}"
 
+# ------------------------------------------------------------------------------
+# hadoop-env.sh vars
+# ------------------------------------------------------------------------------
+hdfs_namenode_heap_size: "2048m"
+hdfs_namenode_javaOpts: "-Xmx{{hdfs_namenode_heap_size}}"
+hdfs_datanode_javaOpts: ""
+
 # default logger selection used in hadoop-env.sh
 hadoop_security_logger: "INFO,RFAS"
 hadoop_audit_logger: "INFO,NullAppender"
