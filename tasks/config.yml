@@ -58,6 +58,22 @@
   tags:
    - hdfs-core-config
 
+- name: Configure hadoop-env.sh
+  template:
+    src: hadoop-env.sh.j2
+    dest: "{{ hdfs_conf_dir }}/hadoop-env.sh"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: 0755
+#  notify:
+#    - Restart namenode
+#    - Restart secondary namenode
+#    - Restart datanode
+#    - Restart journalnode
+#    - Restart zkfc
+  tags:
+   - hdfs-core-config
+
 - name: Configure hdfs-site.xml
   template:
     src: hdfs-site.xml.j2
