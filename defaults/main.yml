@@ -14,7 +14,7 @@ hdfs_conf_dir: "{{ hadoop_install_dir }}/etc/hadoop"
 
 # Directories where journal nodes should store edits
 hdfs_dfs_journalnode_edits_dir: "{{ hadoop_install_dir }}/dfs/journaldir"
-hdfs_dfs_journalnode_edits_dir_perm: "u=rw,g=rw,o=rw"
+hdfs_dfs_journalnode_edits_dir_perm: "u=rwx,g=rwx,o=rx"
 
 # Bootstraps the cluster ( Format namenodes, zkfc, journalnodes, start all services)
 # Please read the code before you activate this option.
