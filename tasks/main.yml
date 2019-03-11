@@ -8,7 +8,7 @@
     owner: "{{ hadoop_user }}"
     group: "{{ hadoop_group }}"
     state: directory
-    mode: 0755
+    mode: "u=rw,g=rw,o=r"
   with_items:
     - "{{ hadoop_create_path }}"
 

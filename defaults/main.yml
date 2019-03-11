@@ -14,7 +14,7 @@ hdfs_conf_dir: "{{ hadoop_install_dir }}/etc/hadoop"
 
 # Directories where journal nodes should store edits
 hdfs_dfs_journalnode_edits_dir: "{{ hadoop_install_dir }}/dfs/journaldir"
-hdfs_dfs_journalnode_edits_dir_perm: 755
+hdfs_dfs_journalnode_edits_dir_perm: "u=rw,g=rw,o=r"
 
 # Bootstraps the cluster ( Format namenodes, zkfc, journalnodes, start all services)
 # Please read the code before you activate this option.
@@ -74,7 +74,7 @@ hdfs_dfs_permissions_superusergroup: "{{hdfs_group}}"
 hdfs_dfs_blocksize: 134217728
 hdfs_dfs_namenode_write_stale_datanode_ratio: "0.5f"
 hdfs_dfs_datanode_du_reserved: "1073741824"
-hdfs_dfs_datanode_data_dir_perm: "700"
+hdfs_dfs_datanode_data_dir_perm: "u=rw,g=rw,o=r"
 hdfs_dfs_datanode_max_transfer_threads: 4096
 hdfs_dfs_replication: 2
 hdfs_dfs_replication_max: 50
