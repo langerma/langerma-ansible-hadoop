@@ -3,7 +3,7 @@
   pause: prompt="Are you sure that you want to continue bootstrapping HDFS?" seconds=10
 
 - name: Ensure that zookeeper is running
-  service: name=zookeeper-server state=started
+  supervisorctl: name=zookeeper state=started
   when: inventory_hostname in hdfs_zookeeper_hosts
 
 - name: Ensure that journal nodes are running
