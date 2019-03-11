@@ -8,6 +8,15 @@
     mode: "{{ hdfs_dfs_datanode_data_dir_perm }}"
   with_items: "{{ hdfs_datanode_dir_list }}"
 
+- name: Create domain socket directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: "{{ hdfs_dfs_domain_socket_path_folder_perm }}"
+  with_items: "{{ hdfs_dfs_domain_socket_path_folder }}"
+
 - name: Set program variable to 'datanode'
   set_fact: program="datanode"
 
