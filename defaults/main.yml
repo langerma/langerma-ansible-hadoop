@@ -42,7 +42,7 @@ hdfs_tmpdir: "{{ hadoop_install_dir }}/tmp"
 # ------------------------------------------------------------------------------
 
 # Symlink for hadoop to the version you are installing
-hdfs_bin_dir: "/bin"
+hdfs_bin_dir: "{{ hadoop_install_dir }}/bin"
 
 # Directories where namenode should store metadata
 hdfs_namenode_dir_list:
