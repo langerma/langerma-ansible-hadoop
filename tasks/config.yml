@@ -49,12 +49,12 @@
     owner: "{{ hdfs_user }}"
     group: "{{ hdfs_group }}"
     mode: 0755
-  notify:
-    - Restart namenode
-    - Restart secondary namenode
-    - Restart datanode
-    - Restart journalnode
-    - Restart zkfc
+#  notify:
+#    - Restart namenode
+#    - Restart secondary namenode
+#    - Restart datanode
+#    - Restart journalnode
+#    - Restart zkfc
   tags:
    - hdfs-core-config
 
@@ -65,12 +65,12 @@
     owner: "{{ hdfs_user }}"
     group: "{{ hdfs_group }}"
     mode: 0755
-  notify:
-    - Restart namenode
-    - Restart secondary namenode
-    - Restart datanode
-    - Restart journalnode
-    - Restart zkfc
+#  notify:
+#    - Restart namenode
+#    - Restart secondary namenode
+#    - Restart datanode
+#    - Restart journalnode
+#    - Restart zkfc
   tags:
    - hdfs-site-config
 
@@ -81,11 +81,11 @@
     owner: "{{ hdfs_user }}"
     group: "{{ hdfs_group }}"
     mode: 0755
-  notify:
-    - Restart namenode
-    - Restart secondary namenode
-    - Restart datanode
-    - Restart journalnode
-    - Restart zkfc
+#  notify:
+#    - Restart namenode
+#    - Restart secondary namenode
+#    - Restart datanode
+#    - Restart journalnode
+#    - Restart zkfc
   tags:
    - hdfs-log4j-config
