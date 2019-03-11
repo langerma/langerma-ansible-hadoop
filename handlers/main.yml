@@ -1,16 +1,16 @@
 ---
 - name: "update supervisord"
-  shell: "supervisorctl update && supervisorctl reread"
+  shell: "supervisorctl reread && supervisorctl update"
   become: yes
 
 #- name: Force systemd to reread configs
 #  systemd: daemon_reload=yes
 #  when: ansible_service_mgr == "systemd"
 
-#- name: Restart namenode
-#  service: name=hadoop-hdfs-namenode state=restarted
-#  when:
-#   - inventory_hostname in hdfs_namenodes
+- name: Restart namenode
+  supervisorctl: name=namenode state=restarted
+  when:
+   - inventory_hostname in hdfs_namenodes
 
 #- name: Restart datanode
 #  service: name=hadoop-hdfs-datanode state=restarted
