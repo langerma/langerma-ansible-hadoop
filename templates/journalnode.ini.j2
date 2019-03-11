@@ -1,7 +1,9 @@
 [program:journalnode]
 user={{ hdfs_user }}
-command={{ hadoop_install_dir }}/bin/hdfs journalnode
+directory={{ hadoop_install_dir }}
+command={{ hadoop_install_dir }}/bin/hdfs --config {{ hdfs_conf_dir }} journalnode
 stopsignal=KILL
 autostart=true
 autorestart=true
 stdout_logfile={{ hdfs_log_dir }}/journalnode.out.log
+stderr_logfile={{ hdfs_log_dir }}/journalnode.err.log
