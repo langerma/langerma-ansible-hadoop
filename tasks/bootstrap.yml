@@ -20,7 +20,7 @@
   when: inventory_hostname == hdfs_namenodes[0]
 
 - name: Start namenode {{hdfs_namenodes[0]}}
-  service: name=hadoop-hdfs-namenode state=started
+  supervisorctl: name=namenode state=started
   when: inventory_hostname == hdfs_namenodes[0]
 
 - name: Wait for the namenode {{ hdfs_namenodes[0] }} to come online
@@ -37,7 +37,7 @@
   when: inventory_hostname == hdfs_namenodes[1]
 
 - name: Start namenode {{hdfs_namenodes[1]}}
-  service: name=hadoop-hdfs-namenode state=started
+  supervisorctl: name=namenode state=started
   when: inventory_hostname == hdfs_namenodes[1]
 
 - name: Format ZK for zkfc
