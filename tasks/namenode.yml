@@ -43,3 +43,6 @@
   notify:
     - update supervisord
     - Restart namenode
+
+- name: Update supervisord
+  shell: supervisorctl reread && supervisorctl update
