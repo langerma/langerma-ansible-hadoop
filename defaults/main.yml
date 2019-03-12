@@ -116,9 +116,9 @@ hdfs_zookeeper_quorum: "{{ hdfs_zookeeper_hosts | join(':' + (hdfs_zookeeper_cli
 # ------------------------------------------------------------------------------
 # hadoop-env.sh vars
 # ------------------------------------------------------------------------------
-hdfs_namenode_heap_size: "2048m"
+hdfs_namenode_heap_size: "128m"
 hdfs_namenode_javaOpts: "-Xmx{{hdfs_namenode_heap_size}}"
-hdfs_datanode_javaOpts: ""
+hdfs_datanode_javaOpts: "-Xmx128m"
 
 # default logger selection used in hadoop-env.sh
 hadoop_security_logger: "INFO,RFAS"
