@@ -9,7 +9,7 @@ hadoop_user: "{{ hdfs_user }}"
 hadoop_group: "{{ hdfs_group }}"
 hadoop_install_tar: "hadoop-2.9.2.tar.gz"
 hadoop_install_dir: "/app/hadoop"
-hadoop_heapsize: 128
+hadoop_heapsize: "128m"
 hdfs_user_home: "{{ hadoop_install_dir }}"
 hdfs_conf_dir: "{{ hadoop_install_dir }}/etc/hadoop"
 
