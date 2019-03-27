@@ -1,6 +1,6 @@
 [program:datanode]
 user={{ hdfs_user }}
-command={{ hadoop_install_dir }}/bin/hdfs --config {{ hdfs_conf_dir }} datanode
+command={{ hadoop_install_dir }}/{{ hadoop_version }}/bin/hdfs --config {{ hdfs_conf_dir }} datanode
 stopsignal=KILL
 autostart=false
 autorestart=false

@@ -1,7 +1,6 @@
 [program:namenode]
 user={{ hdfs_user }}
-#directory={{ hadoop_install_dir }}
-command={{ hadoop_install_dir }}/bin/hdfs --config {{ hdfs_conf_dir }} namenode
+command={{ hadoop_install_dir }}/{{ hadoop_version }}/bin/hdfs --config {{ hdfs_conf_dir }} namenode
 stopsignal=KILL
 autostart=false
 autorestart=false

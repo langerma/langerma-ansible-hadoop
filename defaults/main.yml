@@ -7,11 +7,12 @@ hdfs_user: "hadoop"
 hdfs_group: "hadoop"
 hadoop_user: "{{ hdfs_user }}"
 hadoop_group: "{{ hdfs_group }}"
-hadoop_install_tar: "hadoop-2.9.2.tar.gz"
+hadoop_install_tar: "hadoop-2.7.7.tar.gz"
 hadoop_install_dir: "/app/hadoop"
+hadoop_version: "2.7.7"
 hadoop_heapsize: 128
 hdfs_user_home: "{{ hadoop_install_dir }}"
-hdfs_conf_dir: "{{ hadoop_install_dir }}/etc/hadoop"
+hdfs_conf_dir: "{{ hadoop_install_dir }}/{{ hadoop_version }}/etc/hadoop"
 
 # Directories where journal nodes should store edits
 hdfs_dfs_journalnode_edits_dir: "{{ hadoop_install_dir }}/dfs/journaldir"
@@ -45,7 +46,7 @@ hdfs_tmpdir: "{{ hadoop_install_dir }}/tmp"
 # ------------------------------------------------------------------------------
 
 # Symlink for hadoop to the version you are installing
-hdfs_bin_dir: "{{ hadoop_install_dir }}/bin"
+hdfs_bin_dir: "{{ hadoop_install_dir }}/{{ hadoop_version }}/bin"
 
 # Directories where namenode should store metadata
 hdfs_namenode_dir_list:
@@ -126,4 +127,4 @@ hadoop_security_logger: "INFO,RFAS"
 hadoop_audit_logger: "INFO,NullAppender"
 
 #hdfs_rack_script_awk: '"{if ($4 < 3) print "/default/rack-1"; else print "/default/rack-2" }"'
-hdfs_rack_script_path: "{{hdfs_conf_dir}}/rack-awareness.sh"
+hdfs_rack_script_path: "{{ hdfs_conf_dir }}/rack-awareness.sh"

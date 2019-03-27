@@ -4,11 +4,11 @@
     src: "files/{{ hadoop_install_tar }}"
     dest: "{{ hadoop_install_dir }}"
 
-- name: Extract {{ hadoop_install_tar }} into {{ hadoop_install_dir }}
+- name: Extract {{ hadoop_install_tar }} into {{ hadoop_install_dir }}/{{ hadoop_version }}
   unarchive:
     remote_src: yes
     src: "{{ hadoop_install_dir }}/{{ hadoop_install_tar }}"
-    dest: "{{ hadoop_install_dir }}"
+    dest: "{{ hadoop_install_dir }}/{{ hadoop_version }}"
     owner: "{{ hadoop_user }}"
     group: "{{ hadoop_group }}"
     extra_opts: [--strip-components=1]

@@ -1,6 +1,6 @@
 [program:zkfc]
 user={{ hdfs_user }}
-command={{ hadoop_install_dir }}/bin/hdfs --config {{ hdfs_conf_dir }} zkfc
+command={{ hadoop_install_dir }}/{{ hadoop_version }}/bin/hdfs --config {{ hdfs_conf_dir }} zkfc
 stopsignal=KILL
 autostart=false
 autorestart=false
