@@ -1,6 +1,6 @@
 ---
 - name: "update supervisord"
-  shell: "supervisorctl reread && supervisorctl update"
+  shell: "supervisorctl update"
   become: yes
 
 #- name: Force systemd to reread configs
