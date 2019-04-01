@@ -2,7 +2,7 @@
 user={{ hdfs_user }}
 command={{ hadoop_install_dir }}/{{ hadoop_version }}/bin/hdfs --config {{ hdfs_conf_dir }} zkfc
 stopsignal=KILL
-autostart=false
-autorestart=false
+autostart=true
+autorestart=true
 stdout_logfile={{ hdfs_log_dir }}/zkfc.out.log
 stderr_logfile={{ hdfs_log_dir }}/zkfc.err.log
