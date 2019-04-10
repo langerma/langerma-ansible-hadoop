@@ -31,7 +31,7 @@ export JAVA_HOME=${JAVA_HOME:-"{{ java_install_dir }}/{{ java_version }}"}
 #export JSVC_HOME=${JSVC_HOME}
 
 export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-"{{ hdfs_conf_dir }}"}
-export HADOOP_HOME={{ hadoop_install_dir }}
+export HADOOP_HOME={{ hadoop_install_dir }}/{{ hadoop_version }}
 
 # Extra Java CLASSPATH elements.  Automatically insert capacity-scheduler.
 for f in $HADOOP_HOME/contrib/capacity-scheduler/*.jar; do
@@ -43,7 +43,7 @@ for f in $HADOOP_HOME/contrib/capacity-scheduler/*.jar; do
 done
 
 # The maximum amount of heap to use, in MB. Default is 1000.
-export HADOOP_HEAPSIZE={{ hadoop_heapsize }}
+#export HADOOP_HEAPSIZE=
 #export HADOOP_NAMENODE_INIT_HEAPSIZE=""
 
 # Extra Java runtime options.  Empty by default.
