@@ -33,14 +33,22 @@
     mode: 0700
   #notify: Restart namenode
 
+- name: copy topology file rack.data
+  copy:
+    src: "files/rack.data"
+    dest: "{{ hdfs_conf_dir }}/rack.data"
+    owner: "{{ hdfs_user }}"
+    group: "{{ hdfs_group }}"
+    mode: 0700
+
 - name: Create rack awareness script
   template:
-    src: rack-awareness.sh.j2
-    dest: "{{ hdfs_rack_script_path }}"
+    src: "rack-awareness.sh.j2"
+    dest: "{{ hdfs_conf_dir }}/rack-awareness.sh"
     owner: "{{ hdfs_user }}"
     group: "{{ hdfs_group }}"
     mode: 0755
-  when: hdfs_rack_script_awk is defined
+  #when: hdfs_rack_script_awk is defined
 
 - name: Configure core-site.xml
   template:

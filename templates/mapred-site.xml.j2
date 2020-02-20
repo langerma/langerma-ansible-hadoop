@@ -1,6 +1,30 @@
 <configuration>
   <property>
-    <name>mapred.job.tracker</name>
-    <value>{{ hdfs_namenodes[0] }}:8021</value>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+  <property>
+    <name>yarn.app.mapreduce.am.env</name>
+    <value>HADOOP_MAPRED_HOME={{ hadoop_install_dir }}/{{ hadoop_version }}</value>
+  </property>
+  <property>
+    <name>mapreduce.map.env</name>
+    <value>HADOOP_MAPRED_HOME={{ hadoop_install_dir }}/{{ hadoop_version }}</value>
+  </property>
+  <property>
+    <name>mapreduce.reduce.env</name>
+    <value>HADOOP_MAPRED_HOME={{ hadoop_install_dir }}/{{ hadoop_version }}</value>
+  </property>
+  <property>
+    <name>yarn.app.mapreduce.am.resource.mb</name>
+    <value>512</value>
+  </property>
+  <property>
+    <name>mapreduce.map.memory.mb</name>
+    <value>256</value>
+  </property>
+  <property>
+    <name>mapreduce.reduce.memory.mb</name>
+    <value>256</value>
   </property>
 </configuration>
